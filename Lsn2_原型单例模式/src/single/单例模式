@@ -1,0 +1,42 @@
+饿汉模式(SingleEasy )
+无法做到在需要使用的时候才创建实例,多线程安全
+
+懒汉模式(SingleNotEmptyEasy)
+多线程安全，随用随加载；
+
+
+DCL模式(DCLSingle)
+JVM调用方法的底层机制
+
+第一步：
+提取Client.class字节码文件放到方法区，在常量池有个DCLSingle的符号引用(这个引用没有指向真正类信息的地址)
+
+第二步:
+将DCLSingle.class字节码加载到内存，这时DCLSingle的符号变量指向class类信息；
+
+
+第三步:
+申明DCLSingle类型 single变量 指向DCLSingle内存控件
+在方法栈中找到getInstance方法，压栈
+
+第四步:
+在堆区开辟空间实例化DCLSingle对象
+
+
+DCL模式的问题在于,是先将对象
+
+
+
+1.引用父类静态字段的时候会不会初始化子类？
+
+2.通过自定义对象数组类型 class[]{Person.class,Child.class};类是否会被加载
+不会
+
+原因:new，class.from{}。java中随用特性，只有在new或者使用反射时才会加载
+
+
+3.public static final int a=10
+
+
+
+
